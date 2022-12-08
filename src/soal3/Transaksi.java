@@ -39,9 +39,24 @@ public class Transaksi {
 
     // Asuransi
     public Transaksi(String namePenjual, String alamatPenjual, String namePembeli, String alamatPembeli, double ongkosKirim, String namaEkspedisi, String noResi, double biayaAsuransi) {
-        this(namePenjual, alamatPenjual, namePembeli, alamatPembeli, ongkosKirim - 5000, namaEkspedisi, noResi);
+        this.idPengiriman += 1;
+        this.namePenjual = namePenjual;
+        this.alamatPenjual = alamatPenjual;
+        this.namePembeli = namePembeli;
+        this.alamatPembeli = alamatPembeli;
+        this.ongkosKirim = totalOngkosKirim(ongkosKirim, 5000);
+        this.namaEkspedisi = namaEkspedisi;
+        this.noResi = noResi;
         this.biayaAsuransi = biayaAsuransi;
         this.statusAsuransi = true;
+    }
+
+    private double totalOngkosKirim(double ongkosKirim, double diskon) {
+        if (ongkosKirim > 20000) {
+            return ongkosKirim - diskon;
+        } else {
+            return ongkosKirim;
+        }
     }
 
     // Drop Shipper
